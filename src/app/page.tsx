@@ -54,7 +54,7 @@ export default function Home() {
 
   const handleLogin = async () => {
     // Mock authentication logic
-    if (username === "user" && password === "password") {
+    if (username === "testuser" && password === "password") {
       setIsLoggedIn(true);
     } else {
       toast({
@@ -206,4 +206,3 @@ export default function Home() {
     </div>
   );
 }
-
