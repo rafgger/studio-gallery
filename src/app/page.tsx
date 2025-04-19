@@ -11,6 +11,26 @@ import { Grid } from "@/components/ui/grid";
 import { Icons } from "@/components/icons";
 import { generatePhotoTags } from "@/ai/flows/generate-photo-tags";
 import { Badge } from "@/components/ui/badge";
+import { NextRequest, NextResponse } from 'next/server';
+// In a real app, you'd import your authentication logic here (e.g., database queries, password verification)
+
+export async function POST(req: NextRequest) {
+  try {
+    const { username, password } = await req.json();
+
+    // ** Replace this with your actual authentication logic **
+    if (username === 'testuser' && password === 'password') {
+      // In a real app, you would typically set a session or JWT here
+      return NextResponse.json({ message: 'Login successful' });
+    } else {
+      return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+    }
+  } catch (error) {
+    console.error('Error during login:', error);
+    return NextResponse.json({ error: 'An error occurred' }, { status: 500 });
+  }
+}
+
 
 const mockPhotos = [
   "https://picsum.photos/id/10/400/300",
@@ -186,3 +206,4 @@ export default function Home() {
     </div>
   );
 }
+
